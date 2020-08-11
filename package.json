@@ -20,6 +20,17 @@
     "url": "https://github.com/devinekadeni/leedo-FE/issues"
   },
   "homepage": "https://github.com/devinekadeni/leedo-FE#readme",
+  "husky": {
+    "hooks": {
+      "pre-commit": "npm run test && lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*.js": [
+      "eslint --cache --fix",
+      "prettier --write"
+    ]
+  },
   "dependencies": {
     "@material-ui/core": "^4.11.0",
     "@material-ui/styles": "^4.10.0",

@@ -11,7 +11,7 @@ const webpackDev = {
   entry: [
     'react-hot-loader/patch',
     'webpack-hot-middleware/client?reload=true',
-    path.resolve(APP_DIR, 'index.js'),
+    path.resolve(APP_DIR, 'index.tsx'),
   ],
   output: {
     filename: '[name].bundle.js',

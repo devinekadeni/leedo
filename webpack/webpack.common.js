@@ -7,14 +7,15 @@ const DIST_DIR = path.resolve(process.cwd(), 'dist')
 const APP_DIR = path.resolve(process.cwd(), 'src')
 
 module.exports = {
-  entry: path.resolve(APP_DIR, 'index.js'),
+  entry: path.resolve(APP_DIR, 'index.tsx'),
   output: {
     path: DIST_DIR,
     publicPath: '/',
   },
   resolve: {
+    extensions: ['.tsx', '.ts', '.js'],
     alias: {
-      containers: path.resolve(APP_DIR, 'containers'),
+      pages: path.resolve(APP_DIR, 'pages'),
       components: path.resolve(APP_DIR, 'components'),
       helpers: path.resolve(APP_DIR, 'helpers'),
       references: path.resolve(APP_DIR, 'references'),
@@ -24,6 +25,11 @@ module.exports = {
   },
   module: {
     rules: [
+      {
+        test: /\.tsx?$/,
+        exclude: /node_modules/,
+        use: ['ts-loader'],
+      },
       {
         test: /\.jsx?$/,
         exclude: /node_modules/,

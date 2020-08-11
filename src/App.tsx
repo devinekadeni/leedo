@@ -1,8 +1,8 @@
-import React from 'react'
+import React, { FunctionComponent } from 'react'
 
 import RoutingComponent from './Routing'
 
-const App = () => {
+const App: FunctionComponent = () => {
   return (
     <>
       <RoutingComponent />

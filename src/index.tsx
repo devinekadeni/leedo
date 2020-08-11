@@ -17,6 +17,7 @@ render(App)
 // react hot loader
 if (module.hot) {
   module.hot.accept('./App.tsx', () => {
+    // eslint-disable-next-line @typescript-eslint/no-var-requires
     const NewAppComponent = require('./App').default
     render(NewAppComponent)
   })

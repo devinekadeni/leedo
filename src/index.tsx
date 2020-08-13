@@ -1,24 +1,5 @@
-import React, { FunctionComponent } from 'react'
-import ReactDOM from 'react-dom'
-import { AppContainer } from 'react-hot-loader'
+import React from 'react'
+import { render } from 'react-dom'
 import App from './App'
 
-const render = (Component: FunctionComponent) => {
-  ReactDOM.render(
-    <AppContainer>
-      <Component />
-    </AppContainer>,
-    document.getElementById('🧙‍♂️')
-  )
-}
-
-render(App)
-
-// react hot loader
-if (module.hot) {
-  module.hot.accept('./App.tsx', () => {
-    // eslint-disable-next-line @typescript-eslint/no-var-requires
-    const NewAppComponent = require('./App').default
-    render(NewAppComponent)
-  })
-}
+render(<App />, document.getElementById('🧙‍♂️'))

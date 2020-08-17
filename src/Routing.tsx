@@ -1,9 +1,10 @@
-import React, { FunctionComponent } from 'react'
+import React from 'react'
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 import Header from 'components/Header'
+import AuthDialog from 'components/Auth'
 import HomePage from 'pages/Home'
 
-const RoutingComponent: FunctionComponent = () => {
+const RoutingComponent: React.FC = () => {
   return (
     <>
       <Router>
@@ -16,6 +17,7 @@ const RoutingComponent: FunctionComponent = () => {
             <div>404 Not Found</div>
           </Route>
         </Switch>
+        <AuthDialog />
       </Router>
     </>
   )

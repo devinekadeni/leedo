@@ -1,9 +1,12 @@
-import React, { FunctionComponent } from 'react'
+import React, { useContext } from 'react'
 import { NavLink } from 'react-router-dom'
 import LOGO from 'assets/leedo-logo.png'
+import DialogContext from 'context/DialogContext'
 import { StyledHeader, LeftNav, StyledButton, RightNav } from './styles'
 
-const Header: FunctionComponent = () => {
+const Header: React.FC = () => {
+  const [, setDialog] = useContext(DialogContext)
+
   return (
     <StyledHeader>
       <LeftNav>
@@ -12,10 +15,20 @@ const Header: FunctionComponent = () => {
         </NavLink>
       </LeftNav>
       <RightNav>
-        <NavLink to="/login">
+        <NavLink
+          to="/login"
+          onClick={() => {
+            setDialog({ Auth: { isOpen: true, page: 'login' } })
+          }}
+        >
           <StyledButton color="primary">Login</StyledButton>
         </NavLink>
-        <NavLink to="/register">
+        <NavLink
+          to="/register"
+          onClick={() => {
+            setDialog({ Auth: { isOpen: true, page: 'register' } })
+          }}
+        >
           <StyledButton color="primary">Register</StyledButton>
         </NavLink>
       </RightNav>

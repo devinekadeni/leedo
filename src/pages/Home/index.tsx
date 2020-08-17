@@ -1,9 +1,9 @@
-import React, { FunctionComponent } from 'react'
+import React from 'react'
 import Button from '@material-ui/core/Button'
 
 import { Wrapper } from './styles'
 
-const HomePage: FunctionComponent = () => {
+const HomePage: React.FC = () => {
   return (
     <Wrapper>
       <h1>

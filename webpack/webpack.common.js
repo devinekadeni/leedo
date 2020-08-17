@@ -22,6 +22,7 @@ module.exports = {
       assets: path.resolve(APP_DIR, 'assets'),
       styles: path.resolve(APP_DIR, 'styles'),
       reduxpath: path.resolve(APP_DIR, 'redux'),
+      context: path.resolve(APP_DIR, 'context'),
     },
   },
   module: {

@@ -4,6 +4,7 @@ import { ThemeProvider } from '@material-ui/core/styles'
 import GlobalStyles from 'styles/GlobalStyles'
 import theme from 'styles/MUI-Theme'
 import RoutingComponent from './Routing'
+import { DialogCtxProvider } from 'context/DialogContext'
 
 const App: FunctionComponent = () => {
   return (
@@ -11,7 +12,9 @@ const App: FunctionComponent = () => {
       <CssBaseline />
       <GlobalStyles />
       <ThemeProvider theme={theme}>
-        <RoutingComponent />
+        <DialogCtxProvider>
+          <RoutingComponent />
+        </DialogCtxProvider>
       </ThemeProvider>
     </>
   )

@@ -1,11 +1,11 @@
 import React, { createContext, useState } from 'react'
 
-type AuthType = {
+interface AuthType {
   isOpen: boolean
   page: string
 }
 
-type DialogType = {
+interface DialogType {
   Auth: AuthType
 }
 

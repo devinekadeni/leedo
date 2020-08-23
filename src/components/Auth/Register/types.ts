@@ -1,5 +1,9 @@
-interface Props {
+export interface Props {
   onClose: () => void
 }
 
-export { Props }
+export interface FormData {
+  fullname: string
+  email: string
+  password: string
+}

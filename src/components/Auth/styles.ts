@@ -3,6 +3,7 @@ import Dialog from '@material-ui/core/Dialog'
 import DialogTitle from '@material-ui/core/DialogTitle'
 import DialogContent from '@material-ui/core/DialogContent'
 import DialogActions from '@material-ui/core/DialogActions'
+import { BASIC_COLOR } from 'styles/_colors'
 
 export const StyledDialog = styled(Dialog)`
   && {
@@ -19,6 +20,14 @@ export const StyledDialogTitle = styled(DialogTitle)`
       text-align: center;
       font-size: 2.4rem;
       font-weight: bold;
+
+      .ic-close {
+        position: absolute;
+        right: 12px;
+        top: 12px;
+        color: gray;
+        cursor: pointer;
+      }
     }
   }
 `
@@ -39,5 +48,18 @@ export const StyledDialogActions = styled(DialogActions)`
     justify-content: center;
     align-items: center;
     padding: 8px 50px 34px;
+  }
+`
+
+export const StyledButtonWrapper = styled.div`
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+
+  .btn-loading {
+    position: absolute;
+    color: ${BASIC_COLOR.mainPurple};
   }
 `

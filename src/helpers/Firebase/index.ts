@@ -20,10 +20,16 @@ export const registerByEmail = async (
   email: string,
   password: string,
   displayName: string
-): Promise<void> => {
-  await firebase.auth().createUserWithEmailAndPassword(email, password)
-  const user = firebase.auth().currentUser
-  user?.updateProfile({ displayName })
+): Promise<unknown> => {
+  try {
+    await firebase.auth().createUserWithEmailAndPassword(email, password)
+    const user = firebase.auth().currentUser
+    user?.updateProfile({ displayName })
+
+    return user
+  } catch (error) {
+    return error
+  }
 }
 
 export const loginByEmail = (email: string, password: string): void => {

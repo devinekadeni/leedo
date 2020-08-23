@@ -51,7 +51,7 @@ export const StyledDialogActions = styled(DialogActions)`
   }
 `
 
-export const StyledButtonWrapper = styled.div`
+export const ButtonWrapper = styled.div`
   position: relative;
   display: flex;
   align-items: center;

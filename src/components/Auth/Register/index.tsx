@@ -13,7 +13,7 @@ import {
   StyledDialogTitle,
   StyledDialogContent,
   StyledDialogActions,
-  StyledButtonWrapper,
+  ButtonWrapper,
 } from '../styles'
 
 import { Props, FormData } from './types'
@@ -87,7 +87,7 @@ const Register: React.FC<Props> = ({ onClose }) => {
           />
         </StyledDialogContent>
         <StyledDialogActions>
-          <StyledButtonWrapper>
+          <ButtonWrapper>
             <Button
               disabled={isSubmitting}
               type="submit"
@@ -100,7 +100,7 @@ const Register: React.FC<Props> = ({ onClose }) => {
             {isSubmitting && (
               <CircularProgress size={20} thickness={5} className="btn-loading" />
             )}
-          </StyledButtonWrapper>
+          </ButtonWrapper>
         </StyledDialogActions>
       </form>
     </StyledDialog>

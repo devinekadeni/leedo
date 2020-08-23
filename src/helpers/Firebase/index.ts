@@ -32,8 +32,8 @@ export const registerByEmail = async (
   }
 }
 
-export const loginByEmail = (email: string, password: string): void => {
-  firebase.auth().signInWithEmailAndPassword(email, password)
+export const loginByEmail = (email: string, password: string): Promise<unknown> => {
+  return firebase.auth().signInWithEmailAndPassword(email, password)
 }
 
 export default firebase

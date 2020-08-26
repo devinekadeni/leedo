@@ -15,6 +15,7 @@ const firebaseConfig: FirebaseConfig = {
 
 // Initialize Firebase
 firebase.initializeApp(firebaseConfig)
+const auth = firebase.auth()
 
 export const registerByEmail = async (
   email: string,
@@ -22,8 +23,8 @@ export const registerByEmail = async (
   displayName: string
 ): Promise<unknown> => {
   try {
-    await firebase.auth().createUserWithEmailAndPassword(email, password)
-    const user = firebase.auth().currentUser
+    await auth.createUserWithEmailAndPassword(email, password)
+    const user = auth.currentUser
     user?.updateProfile({ displayName })
 
     return user
@@ -33,7 +34,8 @@ export const registerByEmail = async (
 }
 
 export const loginByEmail = (email: string, password: string): Promise<unknown> => {
-  return firebase.auth().signInWithEmailAndPassword(email, password)
+  return auth.signInWithEmailAndPassword(email, password)
 }
 
+export { auth }
 export default firebase

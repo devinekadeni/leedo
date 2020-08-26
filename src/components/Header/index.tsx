@@ -1,39 +1,14 @@
-import React, { useContext } from 'react'
-import { NavLink } from 'react-router-dom'
-import LOGO from 'assets/leedo-logo.png'
-import DialogContext from 'context/DialogContext'
-import { StyledHeader, LeftNav, StyledButton, RightNav } from './styles'
+import React from 'react'
 
-const Header: React.FC = () => {
-  const [, setDialog] = useContext(DialogContext)
+import Member from './Member'
+import Guest from './Guest'
 
-  return (
-    <StyledHeader>
-      <LeftNav>
-        <NavLink to="/">
-          <img src={LOGO} alt="logo_icon" />
-        </NavLink>
-      </LeftNav>
-      <RightNav>
-        <NavLink
-          to="/login"
-          onClick={() => {
-            setDialog({ Auth: { isOpen: true, page: 'login' } })
-          }}
-        >
-          <StyledButton color="primary">Login</StyledButton>
-        </NavLink>
-        <NavLink
-          to="/register"
-          onClick={() => {
-            setDialog({ Auth: { isOpen: true, page: 'register' } })
-          }}
-        >
-          <StyledButton color="primary">Register</StyledButton>
-        </NavLink>
-      </RightNav>
-    </StyledHeader>
-  )
+interface Props {
+  isLoggedIn: boolean
+}
+
+const Header: React.FC<Props> = ({ isLoggedIn }) => {
+  return isLoggedIn ? <Member /> : <Guest />
 }
 
 export default Header

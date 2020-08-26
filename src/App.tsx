@@ -5,6 +5,7 @@ import GlobalStyles from 'styles/GlobalStyles'
 import theme from 'styles/MUI-Theme'
 import RoutingComponent from './Routing'
 import { DialogCtxProvider } from 'context/DialogContext'
+import { AuthCtxProvider } from 'context/AuthContext'
 
 const App: React.FC = () => {
   return (
@@ -12,9 +13,11 @@ const App: React.FC = () => {
       <CssBaseline />
       <GlobalStyles />
       <ThemeProvider theme={theme}>
-        <DialogCtxProvider>
-          <RoutingComponent />
-        </DialogCtxProvider>
+        <AuthCtxProvider>
+          <DialogCtxProvider>
+            <RoutingComponent />
+          </DialogCtxProvider>
+        </AuthCtxProvider>
       </ThemeProvider>
     </>
   )

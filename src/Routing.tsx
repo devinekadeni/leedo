@@ -7,6 +7,7 @@ import { auth } from 'helpers/Firebase'
 import Header from 'components/Header'
 import AuthDialog from 'components/Auth'
 import HomePage from 'pages/Home'
+import UnauthorizedPage from 'pages/Unauthorized'
 
 const RoutingComponent: React.FC = () => {
   const [authData, setAuthData] = useContext(AuthContext)
@@ -29,12 +30,9 @@ const RoutingComponent: React.FC = () => {
       <Router>
         <Header isLoggedIn={authData.isLoggedIn} />
         <Switch>
-          <Route exact path="/">
-            <HomePage />
-          </Route>
-          <Route path="/*">
-            <div>404 Not Found</div>
-          </Route>
+          <Route exact path="/" component={HomePage} />
+          <Route path="/unauthorized" component={UnauthorizedPage} />
+          <Route path="/*" render={() => <div>404 Not Found</div>} />
         </Switch>
         {!authData.isLoggedIn && <AuthDialog />}
       </Router>

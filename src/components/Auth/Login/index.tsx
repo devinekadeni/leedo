@@ -34,6 +34,7 @@ const Login: React.FC<Props> = ({ onClose }) => {
 
     try {
       await loginByEmail(email, password)
+      onClose()
     } catch (error) {
       setIsSubmitting(false)
       setErrorMessage(error.message)

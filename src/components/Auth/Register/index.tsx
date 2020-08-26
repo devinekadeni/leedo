@@ -43,6 +43,7 @@ const Register: React.FC<Props> = ({ onClose }) => {
 
     try {
       await registerByEmail(email, password, fullname)
+      onClose()
     } catch (error) {
       setIsSubmitting(false)
       setErrorMessage(error.message)

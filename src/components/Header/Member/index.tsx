@@ -1,18 +1,17 @@
-import React, { useContext } from 'react'
-import { NavLink } from 'react-router-dom'
+import React from 'react'
+import { NavLink, useHistory } from 'react-router-dom'
 
-import AuthContext from 'context/AuthContext'
 import { auth } from 'helpers/Firebase'
 
 import LOGO from 'assets/leedo-logo.png'
 import { StyledHeader, LeftNav, StyledButton, RightNav } from '../styles'
 
 const Header: React.FC = () => {
-  const [, setAuthData] = useContext(AuthContext)
+  const history = useHistory()
 
   const onLogout = async () => {
     await auth.signOut()
-    setAuthData({ displayName: '', email: '', id: '', isLoggedIn: false })
+    history.push('/')
   }
 
   return (

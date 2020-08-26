@@ -19,6 +19,13 @@ export const Wrapper = styled.div`
   color: #fff;
   font-weight: bold;
   border-radius: 6px;
+  opacity: 1;
+  transition: opacity 0.3s;
+
+  &:hover {
+    opacity: 0.9;
+    cursor: pointer;
+  }
 
   h5 {
     display: -webkit-box;

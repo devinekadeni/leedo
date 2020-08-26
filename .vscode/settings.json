@@ -84,9 +84,6 @@
   "workbench.activityBar.visible": false,
   "editor.semanticHighlighting.enabled": false, // for highlighting parameter
   "prettier.semi": false,
-  "[javascript]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
-  },
   "prettier.singleQuote": true,
   "cSpell.userWords": [
     "Postgresql",
@@ -108,21 +105,13 @@
     "activityBarBadge.background": "#e23dc0",
     "activityBarBadge.foreground": "#e7e7e7",
     "statusBar.background": "#52c6e5",
-    "statusBar.border": "#52c6e5",
     "statusBar.foreground": "#15202b",
     "statusBarItem.hoverBackground": "#26b7de",
     "titleBar.activeBackground": "#52c6e5",
     "titleBar.activeForeground": "#15202b",
-    "titleBar.border": "#52c6e5",
     "titleBar.inactiveBackground": "#52c6e599",
     "titleBar.inactiveForeground": "#15202b99"
   },
   "peacock.color": "#52c6e5",
-  "editor.formatOnSave": true,
-  // "[javascript]": {
-  //   "editor.defaultFormatter": "esbenp.prettier-vscode"
-  // },
-  // "[jsonc]": {
-  //   "editor.defaultFormatter": "esbenp.prettier-vscode"
-  // }
+  "editor.formatOnSave": true
 }

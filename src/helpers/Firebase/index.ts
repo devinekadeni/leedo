@@ -42,7 +42,7 @@ export const loginByEmail = (email: string, password: string): Promise<unknown> 
 export const getDataByCollection = async (
   collection: string,
   where?: Where
-): Promise<unknown> => {
+): Promise<GetResponse[]> => {
   const response: GetResponse[] = []
   let querySnapshot
 

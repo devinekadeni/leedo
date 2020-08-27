@@ -1,63 +1,46 @@
-import React from 'react'
+import React, { useEffect, useContext, useState } from 'react'
 import { Add } from '@styled-icons/material/Add'
+
+import AuthContext from 'context/AuthContext'
+import { getDataByCollection, Operator } from 'helpers/Firebase'
+import DB from 'constants/db'
 
 import TaskCard from 'components/TaskCard'
 
 import { Wrapper, TaskWrapper, NewTaskWrapper } from './styles'
 
-// TODO: will be replaced with firebase data
-const DUMMY_DATA = [
-  {
-    id: 1,
-    period: 'daily',
-    title:
-      'test todo yg banyak banget semoga ini cukup banyak ya ternyata masih kurang banyak boi',
-    taskDone: 2,
-    taskTotal: 10,
-  },
-  {
-    id: 2,
-    period: 'monthly',
-    title:
-      'test todo yg banyak banget semoga ini cukup banyak ya ternyata masih kurang banyak boi',
-    taskDone: 2,
-    taskTotal: 10,
-  },
-  {
-    id: 3,
-    period: 'yearly',
-    title:
-      'test todo yg banyak banget semoga ini cukup banyak ya ternyata masih kurang banyak boi',
-    taskDone: 2,
-    taskTotal: 10,
-  },
-  {
-    id: 4,
-    period: 'yearly',
-    title:
-      'test todo yg banyak banget semoga ini cukup banyak ya ternyata masih kurang banyak boi',
-    taskDone: 2,
-    taskTotal: 10,
-  },
-  {
-    id: 5,
-    period: 'custom',
-    title:
-      'test todo yg banyak banget semoga ini cukup banyak ya ternyata masih kurang banyak boi',
-    taskDone: 2,
-    taskTotal: 10,
-  },
-  {
-    id: 6,
-    period: 'custom',
-    title:
-      'test todo yg banyak banget semoga ini cukup banyak ya ternyata masih kurang banyak boi',
-    taskDone: 2,
-    taskTotal: 10,
-  },
-]
+interface Tasks {
+  id: string
+  period?: string
+  title?: string
+  taskDone?: number
+  taskTotal?: number
+}
 
 const TaskList: React.FC = () => {
+  const [authData] = useContext(AuthContext)
+  const [tasks, setTasks] = useState<Tasks[]>([])
+
+  useEffect(() => {
+    async function fetchTaskList() {
+      const res = await getDataByCollection(DB.TASK, {
+        field: 'userId',
+        operator: Operator['=='],
+        value: authData.id,
+      })
+      setTasks(res)
+    }
+
+    if (authData.id) {
+      try {
+        fetchTaskList()
+      } catch (error) {
+        // eslint-disable-next-line no-console
+        console.error('Error fetching task list', error)
+      }
+    }
+  }, [authData])
+
   return (
     <Wrapper>
       <h1>Task List</h1>
@@ -66,17 +49,18 @@ const TaskList: React.FC = () => {
           <Add size={24} className="ic-add" />
           <h5>Create new task</h5>
         </NewTaskWrapper>
-        {DUMMY_DATA.map((task) => {
-          return (
-            <TaskCard
-              key={task.id}
-              period={task.period}
-              title={task.title}
-              taskDone={task.taskDone}
-              taskTotal={task.taskTotal}
-            />
-          )
-        })}
+        {tasks.length > 0 &&
+          tasks.map((task) => {
+            return (
+              <TaskCard
+                key={task.id}
+                period={task.period || ''}
+                title={task.title || ''}
+                taskDone={task.taskDone || 0}
+                taskTotal={task.taskTotal || 0}
+              />
+            )
+          })}
       </TaskWrapper>
     </Wrapper>
   )

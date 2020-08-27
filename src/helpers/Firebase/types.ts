@@ -12,3 +12,18 @@ export interface GetResponse {
   id: string
   [key: string]: unknown
 }
+
+export enum Operator {
+  '<' = '<',
+  '<=' = '<=',
+  '==' = '==',
+  '>=' = '>=',
+  '>' = '>',
+}
+
+export interface Where {
+  field: string
+  /** options: "<", "<=", "==", ">=", ">" */
+  operator: Operator
+  value: unknown
+}

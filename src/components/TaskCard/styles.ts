@@ -12,6 +12,7 @@ const bgColor: BgColor = {
 export const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
   padding: 18px;
   max-width: 24rem;
   width: 100%;
@@ -36,12 +37,17 @@ export const Wrapper = styled.div`
     font-size: 1.6rem;
   }
 
-  .task-period {
-    align-self: flex-end;
-    text-transform: capitalize;
-  }
+  > .task-status-wrapper {
+    display: flex;
+    flex-direction: column;
 
-  .task-progress {
-    align-self: flex-end;
+    .task-period {
+      align-self: flex-end;
+      text-transform: capitalize;
+    }
+
+    .task-progress {
+      align-self: flex-end;
+    }
   }
 `

@@ -12,7 +12,7 @@ export const TaskWrapper = styled.div`
   display: grid;
   justify-content: center;
   grid-template-columns: repeat(auto-fill, minmax(20rem, 24rem));
-  grid-template-rows: auto;
+  grid-template-rows: minmax(140px, auto);
   gap: 30px;
 `
 

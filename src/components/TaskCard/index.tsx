@@ -7,10 +7,12 @@ const TaskCard: React.FC<Props> = ({ title, period, taskTotal, taskDone }) => {
   return (
     <Wrapper period={period}>
       <h5>{title}</h5>
-      <span className="task-period">{period}</span>
-      <span className="task-progress">
-        {taskDone} of {taskTotal} done
-      </span>
+      <div className="task-status-wrapper">
+        <span className="task-period">{period}</span>
+        <span className="task-progress">
+          {taskDone} of {taskTotal} done
+        </span>
+      </div>
     </Wrapper>
   )
 }

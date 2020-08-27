@@ -1,7 +1,8 @@
 import firebase from 'firebase/app'
 import 'firebase/auth'
+import 'firebase/firestore'
 
-import { FirebaseConfig } from './types'
+import { FirebaseConfig, GetResponse } from './types'
 
 const firebaseConfig: FirebaseConfig = {
   apiKey: process.env.FIREBASE_API_KEY,
@@ -16,6 +17,7 @@ const firebaseConfig: FirebaseConfig = {
 // Initialize Firebase
 firebase.initializeApp(firebaseConfig)
 const auth = firebase.auth()
+const firestore = firebase.firestore()
 
 export const registerByEmail = async (
   email: string,
@@ -37,5 +39,17 @@ export const loginByEmail = (email: string, password: string): Promise<unknown> 
   return auth.signInWithEmailAndPassword(email, password)
 }
 
-export { auth }
+export const getDataByCollection = async (collection: string): Promise<unknown> => {
+  const response: GetResponse[] = []
+
+  const querySnapshot = await firestore.collection(collection).get()
+  querySnapshot.forEach((doc) => {
+    const data = { id: doc.id, ...doc.data() }
+    response.push(data)
+  })
+
+  return response
+}
+
+export { auth, firestore }
 export default firebase

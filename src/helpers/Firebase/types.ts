@@ -7,3 +7,8 @@ export interface FirebaseConfig {
   messagingSenderId: string | undefined
   appId: string | undefined
 }
+
+export interface GetResponse {
+  id: string
+  [key: string]: unknown
+}

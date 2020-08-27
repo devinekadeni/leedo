@@ -19,7 +19,7 @@ module.exports = {
       pages: path.resolve(APP_DIR, 'pages'),
       components: path.resolve(APP_DIR, 'components'),
       helpers: path.resolve(APP_DIR, 'helpers'),
-      references: path.resolve(APP_DIR, 'references'),
+      constants: path.resolve(APP_DIR, 'constants'),
       assets: path.resolve(APP_DIR, 'assets'),
       styles: path.resolve(APP_DIR, 'styles'),
       reduxpath: path.resolve(APP_DIR, 'redux'),

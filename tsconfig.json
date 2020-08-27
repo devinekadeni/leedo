@@ -48,8 +48,8 @@
       "pages": ["pages/*"],
       "components": ["components/*"],
       "assets": ["assets/*"],
-      "utils": ["utils/*"],
-      "references": ["references/*"],
+      "helpers": ["helpers/*"],
+      "constants": ["constants/*"],
       "styles": ["styles/*"],
       "context": ["context/*"]
     },

@@ -20,7 +20,7 @@ const RoutingComponent: React.FC = () => {
         <Header isLoggedIn={authData.isLoggedIn} />
         <Switch>
           <Route exact path="/" component={HomePage} />
-          <ProtectedRoute path="/list" component={TaskListPage} />
+          <ProtectedRoute path="/task" component={TaskListPage} />
           <Route path="/add-task" component={AddTaskPage} />
           <Route path="/unauthorized" component={UnauthorizedPage} />
           <Route path="/*" render={() => <div>404 Not Found</div>} />

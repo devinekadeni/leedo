@@ -20,8 +20,8 @@ const Header: React.FC = () => {
         <NavLink to="/">
           <img src={LOGO} alt="logo_icon" />
         </NavLink>
-        <NavLink to="/list">
-          <StyledButton color="primary">List</StyledButton>
+        <NavLink to="/task">
+          <StyledButton color="primary">Tasks</StyledButton>
         </NavLink>
         <NavLink to="/add-task">
           <StyledButton color="primary">Create Task</StyledButton>

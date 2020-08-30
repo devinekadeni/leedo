@@ -46,7 +46,7 @@ const Register: React.FC<Props> = ({ onClose }) => {
     try {
       await registerByEmail(email, password, fullname)
       onClose()
-      history.push('/list')
+      history.push('/task')
     } catch (error) {
       setIsSubmitting(false)
       setErrorMessage(error.message)

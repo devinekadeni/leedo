@@ -37,7 +37,7 @@ const Login: React.FC<Props> = ({ onClose }) => {
     try {
       await loginByEmail(email, password)
       onClose()
-      history.push('/list')
+      history.push('/task')
     } catch (error) {
       setIsSubmitting(false)
       setErrorMessage(error.message)

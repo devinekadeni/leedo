@@ -53,7 +53,7 @@ const AddTask: React.FC = () => {
         userId: authData.id,
       }
       await addDataByCollection(DB.TASK, payload)
-      history.push('/list')
+      history.push('/task')
     } catch (error) {
       setErrorMessage(error)
       setIsSubmitting(false)

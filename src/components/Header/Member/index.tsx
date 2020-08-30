@@ -23,6 +23,9 @@ const Header: React.FC = () => {
         <NavLink to="/list">
           <StyledButton color="primary">List</StyledButton>
         </NavLink>
+        <NavLink to="/add-task">
+          <StyledButton color="primary">Create Task</StyledButton>
+        </NavLink>
       </LeftNav>
       <RightNav>
         <StyledButton color="primary" onClick={onLogout}>

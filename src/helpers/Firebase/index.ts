@@ -64,5 +64,12 @@ export const getDataByCollection = async (
   return response
 }
 
+export const addDataByCollection = (
+  collection: string,
+  payload: { [key: string]: unknown }
+): Promise<unknown> => {
+  return firestore.collection(collection).add(payload)
+}
+
 export { auth, firestore, Operator }
 export default firebase

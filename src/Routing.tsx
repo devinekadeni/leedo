@@ -8,6 +8,7 @@ import AuthDialog from 'components/Auth'
 import ProtectedRoute from 'components/ProtectedRoute'
 import HomePage from 'pages/Home'
 import TaskListPage from 'pages/TaskList'
+import AddTaskPage from 'pages/AddTask'
 import UnauthorizedPage from 'pages/Unauthorized'
 
 const RoutingComponent: React.FC = () => {
@@ -20,6 +21,7 @@ const RoutingComponent: React.FC = () => {
         <Switch>
           <Route exact path="/" component={HomePage} />
           <ProtectedRoute path="/list" component={TaskListPage} />
+          <Route path="/add-task" component={AddTaskPage} />
           <Route path="/unauthorized" component={UnauthorizedPage} />
           <Route path="/*" render={() => <div>404 Not Found</div>} />
         </Switch>

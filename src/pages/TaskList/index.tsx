@@ -1,4 +1,5 @@
 import React, { useEffect, useContext, useState } from 'react'
+import { useHistory } from 'react-router-dom'
 import { Add } from '@styled-icons/material/Add'
 
 import AuthContext from 'context/AuthContext'
@@ -18,6 +19,7 @@ interface Tasks {
 }
 
 const TaskList: React.FC = () => {
+  const history = useHistory()
   const [authData] = useContext(AuthContext)
   const [tasks, setTasks] = useState<Tasks[]>([])
 
@@ -41,11 +43,13 @@ const TaskList: React.FC = () => {
     }
   }, [authData])
 
+  const createTask = () => history.push('/add-task')
+
   return (
     <Wrapper>
       <h1>Task List</h1>
       <TaskWrapper>
-        <NewTaskWrapper>
+        <NewTaskWrapper onClick={createTask}>
           <Add size={24} className="ic-add" />
           <h5>Create new task</h5>
         </NewTaskWrapper>

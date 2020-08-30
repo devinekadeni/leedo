@@ -9,8 +9,11 @@ export const StyledHeader = styled.header`
 `
 
 export const LeftNav = styled.nav`
+  flex: 1;
   display: grid;
-  grid-template-columns: repeat(auto-fill, auto);
+  justify-content: flex-start;
+  align-items: center;
+  grid-template-columns: repeat(auto-fit, minmax(50px, auto));
   column-gap: 8px;
 
   img {
@@ -28,8 +31,11 @@ export const StyledButton = styled(Button)`
 `
 
 export const RightNav = styled.nav`
+  flex: 1;
   display: grid;
-  grid-template-columns: auto auto;
+  justify-content: flex-end;
+  align-items: center;
+  grid-template-columns: repeat(auto-fit, minmax(50px, auto));
   column-gap: 8px;
 
   a {

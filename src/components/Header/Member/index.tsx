@@ -20,6 +20,9 @@ const Header: React.FC = () => {
         <NavLink to="/">
           <img src={LOGO} alt="logo_icon" />
         </NavLink>
+        <NavLink to="/list">
+          <StyledButton color="primary">List</StyledButton>
+        </NavLink>
       </LeftNav>
       <RightNav>
         <StyledButton color="primary" onClick={onLogout}>

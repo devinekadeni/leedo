@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react'
+import { useHistory } from 'react-router-dom'
 import { useForm } from 'react-hook-form'
 
 import TextField from '@material-ui/core/TextField'
@@ -18,6 +19,7 @@ import {
 import { Props, FormData } from './types'
 
 const Login: React.FC<Props> = ({ onClose }) => {
+  const history = useHistory()
   const { handleSubmit, register, setValue, errors } = useForm()
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [errorMessage, setErrorMessage] = useState('')
@@ -35,6 +37,7 @@ const Login: React.FC<Props> = ({ onClose }) => {
     try {
       await loginByEmail(email, password)
       onClose()
+      history.push('/list')
     } catch (error) {
       setIsSubmitting(false)
       setErrorMessage(error.message)

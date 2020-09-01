@@ -11,6 +11,7 @@ export interface Props {
   period: string
   taskTotal: number
   taskDone: number
+  onClick?: () => void
 }
 
 export interface StyledWrapper {

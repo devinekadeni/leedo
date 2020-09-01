@@ -11,7 +11,7 @@ import TaskCard from 'components/TaskCard'
 import { Wrapper, TaskWrapper, NewTaskWrapper } from './styles'
 
 interface Tasks {
-  id: string
+  id?: string
   period?: string
   title?: string
   taskDone?: number
@@ -44,6 +44,7 @@ const TaskList: React.FC = () => {
   }, [authData])
 
   const createTask = () => history.push('/add-task')
+  const onCardClick = (id: string) => history.push(`/task/${id}`)
 
   return (
     <Wrapper>
@@ -62,6 +63,7 @@ const TaskList: React.FC = () => {
                 title={task.title || ''}
                 taskDone={task.taskDone || 0}
                 taskTotal={task.taskTotal || 0}
+                onClick={() => onCardClick(task.id || '')}
               />
             )
           })}

@@ -2,7 +2,7 @@ import firebase from 'firebase/app'
 import 'firebase/auth'
 import 'firebase/firestore'
 
-import { FirebaseConfig, GetResponse, Where, Operator } from './types'
+import { FirebaseConfig, Response, Where, Operator } from './types'
 
 const firebaseConfig: FirebaseConfig = {
   apiKey: process.env.FIREBASE_API_KEY,
@@ -42,8 +42,8 @@ export const loginByEmail = (email: string, password: string): Promise<unknown> 
 export const getDataByCollection = async (
   collection: string,
   where?: Where
-): Promise<GetResponse[]> => {
-  const response: GetResponse[] = []
+): Promise<Response[]> => {
+  const response: Response[] = []
   let querySnapshot
 
   if (where) {
@@ -64,10 +64,31 @@ export const getDataByCollection = async (
   return response
 }
 
+export const getDataById = async (
+  collection: string,
+  id: string
+): Promise<Response | undefined> => {
+  const doc = await firestore.collection(collection).doc(id).get()
+
+  if (doc.exists) {
+    return doc.data()
+  }
+
+  return {}
+}
+
+export const updateDataById = async (
+  collection: string,
+  id: string,
+  payload: { [key: string]: unknown }
+): Promise<void> => {
+  firestore.collection(collection).doc(id).update(payload)
+}
+
 export const addDataByCollection = (
   collection: string,
   payload: { [key: string]: unknown }
-): Promise<unknown> => {
+): Promise<any> => {
   return firestore.collection(collection).add(payload)
 }
 

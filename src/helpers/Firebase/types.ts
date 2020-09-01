@@ -8,8 +8,7 @@ export interface FirebaseConfig {
   appId: string | undefined
 }
 
-export interface GetResponse {
-  id: string
+export interface Response {
   [key: string]: unknown
 }
 

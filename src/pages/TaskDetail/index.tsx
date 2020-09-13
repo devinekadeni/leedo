@@ -1,19 +1,16 @@
 /* eslint-disable jsx-a11y/no-autofocus */
 import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
-import {
-  getDataByCollection,
-  Operator,
-  getDataById,
-  addDataByCollection,
-  updateDataById,
-} from 'helpers/Firebase'
+import { useDispatch, useSelector } from 'react-redux'
+import { fetchTaskStart, fetchSubTaskStart } from 'reduxpath/ducks/TaskDetail'
+import { addDataByCollection, updateDataById } from 'helpers/Firebase'
 import DB from 'constants/db'
 
 import Button from '@material-ui/core/Button'
 import TextField from '@material-ui/core/TextField'
 import SubTaskItem from 'components/SubTaskItem'
 import { Wrapper, StyledForm, SubTaskWrapper } from './styles'
+import { RootState } from 'reduxpath/root-reducer'
 
 interface Params {
   id: string
@@ -31,37 +28,23 @@ interface SubTaskData {
 
 const TaskDetail: React.FC = () => {
   const { id }: Params = useParams()
-  const [taskData, setTaskData] = useState<TaskData | undefined>(undefined)
-  const [subTaskData, setSubTaskData] = useState<SubTaskData[]>([])
   const [isAdding, setIsAdding] = useState(false)
+  const dispatch = useDispatch()
+  const taskTitle = useSelector((state: RootState) => state.TaskDetail.title)
+  const subTaskData = useSelector((state: RootState) => state.TaskDetail.subTasks)
 
   useEffect(() => {
-    async function fetchTaskData() {
-      try {
-        const resTask = await getDataById(DB.TASK, id)
-        const resSubTask = await getDataByCollection(DB.SUB_TASK, {
-          field: 'taskId',
-          operator: Operator['=='],
-          value: id,
-        })
-
-        setTaskData(resTask)
-        setSubTaskData(resSubTask)
-      } catch (error) {
-        console.error('ERROR Fetching task detail data', error)
-      }
-    }
-
-    fetchTaskData()
-  }, [id])
+    dispatch(fetchTaskStart(id))
+    dispatch(fetchSubTaskStart(id))
+  }, [id, dispatch])
 
   const addNewSubTask = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     const target = e.target as HTMLFormElement
     const payload = { status: 0, title: target.newSubTask.value, taskId: id }
 
-    const res = await addDataByCollection(DB.SUB_TASK, payload)
-    setSubTaskData((data) => [...data, { ...payload, id: res.id }])
+    await addDataByCollection(DB.SUB_TASK, payload)
+    dispatch(fetchSubTaskStart(id)) // TODO: should modify the redux from response above
     setIsAdding(false)
   }
 
@@ -75,7 +58,7 @@ const TaskDetail: React.FC = () => {
 
   return (
     <Wrapper>
-      <h1>{taskData?.title || ''}</h1>
+      <h1>{taskTitle}</h1>
       <h5>Task List</h5>
       <SubTaskWrapper>
         <Button

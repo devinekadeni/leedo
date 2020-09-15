@@ -52,6 +52,7 @@ const TaskDetail: React.FC = () => {
     try {
       updateDataById(DB.SUB_TASK, subTaskId, { status })
     } catch (error) {
+      // eslint-disable-next-line no-console
       console.error('ERROR Updating subtask', error)
     }
   }
@@ -85,7 +86,7 @@ const TaskDetail: React.FC = () => {
           </StyledForm>
         )}
         {subTaskData.length > 0 &&
-          subTaskData.map((task) => {
+          subTaskData.map((task: SubTaskData) => {
             return (
               <SubTaskItem
                 key={task.id}

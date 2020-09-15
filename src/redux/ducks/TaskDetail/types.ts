@@ -11,11 +11,6 @@ export interface SubTaskData {
   status?: number
 }
 
-export interface Action {
-  type: string
-  payload?: any
-}
-
 export const Types = {
   FETCH_TASK_START: 'FETCH_TASK_START',
   FETCH_TASK_SUCCESS: 'FETCH_TASK_SUCCESS',

@@ -1,4 +1,5 @@
-import { TaskData, SubTaskData, Action, Types } from './types'
+import { createReducer } from '../../utils'
+import { TaskData, SubTaskData, Types } from './types'
 
 export const INITIAL_STATE: TaskData = {
   title: '',
@@ -6,36 +7,30 @@ export const INITIAL_STATE: TaskData = {
   counter: 0,
 }
 
-const TaskDetailReducer = (state = INITIAL_STATE, action: Action): TaskData => {
-  switch (action?.type) {
-    case Types.FETCH_TASK_START:
-      return { ...state }
-    case Types.FETCH_TASK_SUCCESS:
-      return {
-        ...state,
-        title: action.payload.title,
-      }
-    case Types.FETCH_TASK_FAILED:
-      return {
-        ...state,
-        error: action.payload,
-      }
-    case Types.FETCH_SUBTASK_START:
-      return { ...state }
-    case Types.FETCH_SUBTASK_SUCCESS:
-      return {
-        ...state,
-        subTasks: action.payload,
-      }
-    case Types.FETCH_SUBTASK_FAILED:
-      return {
-        ...state,
-        error: action.payload,
-      }
-    default:
-      return state
-  }
-}
+const TaskDetailReducer = createReducer(INITIAL_STATE, {
+  [Types.FETCH_TASK_START]: (state) => ({
+    ...state,
+  }),
+  [Types.FETCH_TASK_SUCCESS]: (state, action) => ({
+    ...state,
+    title: action.payload.title,
+  }),
+  [Types.FETCH_TASK_FAILED]: (state, action) => ({
+    ...state,
+    error: action.payload,
+  }),
+  [Types.FETCH_SUBTASK_START]: (state) => ({
+    ...state,
+  }),
+  [Types.FETCH_SUBTASK_SUCCESS]: (state, action) => ({
+    ...state,
+    subTasks: action.payload,
+  }),
+  [Types.FETCH_SUBTASK_FAILED]: (state, action) => ({
+    ...state,
+    error: action.payload,
+  }),
+})
 
 type actionType = {
   payload: any
